@@ -150,6 +150,20 @@ while running:
         # 发球状态下，玩家可以移动调整位置
         player1.update(keys)
         player2.update(keys)
+        # 规则：发球方不能超过发球线靠近球网
+
+        # 定义限制区域
+        service_line_left_x = SCREEN_WIDTH // 2 - SERVICE_LINE_DIST
+        service_line_right_x = SCREEN_WIDTH // 2 + SERVICE_LINE_DIST
+
+        if current_server == "P1":
+            # 如果是 P1 发球，他的最右边 (rect.right) 不能超过左侧发球线
+            if player1.rect.right > service_line_left_x:
+                player1.rect.right = service_line_left_x
+        else:
+            # 如果是 P2 发球，他的最左边 (rect.left) 不能小于右侧发球线
+            if player2.rect.left < service_line_right_x:
+                player2.rect.left = service_line_right_x
         # 球跟随发球者
         if current_server == "P1":
             ball.reset_for_serve(player1)
@@ -163,6 +177,14 @@ while running:
     pygame.draw.rect(screen, GROUND_COLOR, (0, FLOOR_Y, SCREEN_WIDTH, SCREEN_HEIGHT - FLOOR_Y))
     # 画球网
     pygame.draw.rect(screen, NET_COLOR, (SCREEN_WIDTH // 2 - 5, SCREEN_HEIGHT - NET_HEIGHT, 10, NET_HEIGHT))
+    # 左侧发球线 (细白线)
+    pygame.draw.line(screen, WHITE,
+                     (SCREEN_WIDTH // 2 - SERVICE_LINE_DIST, FLOOR_Y),
+                     (SCREEN_WIDTH // 2 - SERVICE_LINE_DIST, FLOOR_Y - 20), 3)
+    # 右侧发球线
+    pygame.draw.line(screen, WHITE,
+                     (SCREEN_WIDTH // 2 + SERVICE_LINE_DIST, FLOOR_Y),
+                     (SCREEN_WIDTH // 2 + SERVICE_LINE_DIST, FLOOR_Y - 20), 3)
     # 画中线(装饰)
     pygame.draw.line(screen, WHITE, (SCREEN_WIDTH // 2, FLOOR_Y), (SCREEN_WIDTH // 2, SCREEN_HEIGHT), 5)
 
