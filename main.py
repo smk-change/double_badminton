@@ -3,8 +3,6 @@
     @Create Time: 2025/11/22 16:40
     @Description: 
 """
-
-# main.py
 import sys
 from settings import *
 from sprites import StickmanPlayer, Shuttlecock
@@ -15,10 +13,10 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption(TITLE)
 clock = pygame.time.Clock()
 font_score = pygame.font.SysFont("arial", 40, bold=True)
-font_msg = pygame.font.SysFont("simhei", 50, bold=True)  # 使用支持中文的字体
+font_msg = pygame.font.SysFont("simhei", 50, bold=True)
 
 # --- 游戏状态枚举 ---
-STATE_MENU = "menu"  # (可选，此代码暂未实现主菜单，直接开始)
+STATE_MENU = "menu"
 STATE_SERVING = "serving"
 STATE_PLAYING = "playing"
 STATE_PAUSED = "paused"

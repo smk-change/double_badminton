@@ -154,6 +154,14 @@ class Shuttlecock(pygame.sprite.Sprite):
         self.rect.x += int(self.vel_x)
         self.rect.y += int(self.vel_y)
 
+        if self.rect.left <= 0:
+            self.rect.left = 0  # 修正位置，防止卡在墙里
+            self.vel_x *= -0.8  # 反弹！乘以负数表示方向变反，0.8表示撞墙损耗一点能量
+        elif self.rect.right >= SCREEN_WIDTH:
+            self.rect.right = SCREEN_WIDTH
+            self.vel_x *= -0.8
+
+
         # 球网碰撞 (简单反弹)
         net_rect = pygame.Rect(SCREEN_WIDTH // 2 - 5, SCREEN_HEIGHT - NET_HEIGHT, 10, NET_HEIGHT)
         if self.rect.colliderect(net_rect):

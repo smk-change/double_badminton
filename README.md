@@ -10,7 +10,7 @@
 
 ## 2\. 开发环境 (Environment)
 
-  * **编程语言**: Python 3.x
+  * **编程语言**: Python 3.12
   * **依赖库**: `pygame`
 
 ### 安装依赖
@@ -84,6 +84,3 @@ python main.py
 ```
 
 -----
-
-**Developer**: [你的名字/学号]
-**Date**: 2023-XX-XX
